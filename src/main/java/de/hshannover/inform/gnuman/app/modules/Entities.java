@@ -11,6 +11,7 @@ import de.hshannover.inform.gnuman.app.model.ghosts.Blinky;
 import de.hshannover.inform.gnuman.app.model.ghosts.Clyde;
 import de.hshannover.inform.gnuman.app.model.ghosts.Inky;
 import de.hshannover.inform.gnuman.app.model.ghosts.Pinky;
+import de.hshannover.inform.gnuman.app.model.GhostFactory;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
 import de.hshannover.inform.gnuman.app.model.storage.MapData;
@@ -25,6 +26,7 @@ public class Entities {
     private TileMap map;
     private Player player;
     private List<AbstractGhost> ghosts;
+    private GhostFactory ghostFactory;
 
     /**
      * Construct a new entity manager.
@@ -35,6 +37,7 @@ public class Entities {
         this.dyn = dyn;
         this.map = map;
         this.ghosts = new LinkedList<>();
+        this.ghostFactory = new GhostFactory();
     }
 
     /**
@@ -59,6 +62,10 @@ public class Entities {
         ghosts.add(new Clyde(dyn, movementCoordinator, tracker));
         ghosts.add(new Pinky(dyn, movementCoordinator, tracker));
         ghosts.add(new Inky(dyn, movementCoordinator, tracker));
+        ghosts.add(ghostFactory.createGhost("Blinky", dyn, movementCoordinator, tracker));
+        ghosts.add(ghostFactory.createGhost("Clyde", dyn, movementCoordinator, tracker));
+        ghosts.add(ghostFactory.createGhost("Pinky", dyn, movementCoordinator, tracker));
+        ghosts.add(ghostFactory.createGhost("Inky", dyn, movementCoordinator, tracker));
    //OK
         Log.info(getClass().getSimpleName(), "Entites placed and loaded successfully.");
     }
