@@ -8,6 +8,7 @@ import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinat
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
 import de.hshannover.inform.gnuman.app.model.storage.MapCell;
+import de.hshannover.inform.gnuman.app.model.strategy.PinkyStrategy;
 
 /**
  * Responds to Pinkys behavior.<br>
@@ -20,16 +21,12 @@ public class Pinky extends AbstractGhost {
 
     public Pinky(DynamicVariables dyn, GhostMovementCoordinator coordinator, GameVariableTracker tracker) {
         super(EntityObjects.PINKY, dyn, coordinator, tracker);
+        setChaseBehaviorStrategy(new PinkyStrategy());
     }
 
     @Override
     protected MapCell decideChaseBehavior(Player player) {
-        Directions d = player.getDirection();
-        int xPlayerOffset, yPlayerOffset;
-    //X Calculation will take the original games offset bug into consideration!
-        xPlayerOffset = (d == Directions.LEFT || d == Directions.RIGHT || d == Directions.UP) ? (d == Directions.RIGHT && d != Directions.UP ? 4 : -4) : 0;
-        yPlayerOffset = (d == Directions.DOWN || d == Directions.UP) ? (d == Directions.DOWN ? 4 : -4) : 0;
-        return new MapCell(player.clampCellX() + xPlayerOffset, player.clampCellY() + yPlayerOffset);
+        return getChaseBehaviorStrategy().strategy(player, coordinator);
     }
 
 }

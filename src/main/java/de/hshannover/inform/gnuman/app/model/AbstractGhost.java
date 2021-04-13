@@ -9,6 +9,7 @@ import de.hshannover.inform.gnuman.app.enums.GhostMovementStates;
 import de.hshannover.inform.gnuman.app.enums.TileType;
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.model.storage.PathNode;
+import de.hshannover.inform.gnuman.app.model.strategy.Strategy;
 import de.hshannover.inform.gnuman.app.rules.EntitySpeedRules.SpeedTypes;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 import de.hshannover.inform.gnuman.app.model.coordination.InternalGhostStateSupervisor;
@@ -36,6 +37,7 @@ public abstract class AbstractGhost extends AbstractEntity {
     private MapCell[] moveAroundInsideSpawn;
     private boolean targetCellReached, pathCompleted, movementStateSwitchQueued, died;
     private int moveAroundInsideSpawnIndex;
+    private Strategy strategy;
 
     /**
      * Special flags for ghost movement operations.
@@ -43,6 +45,21 @@ public abstract class AbstractGhost extends AbstractEntity {
      */
     public enum MovementFlags {
         CAN_PASS_GHOSTWALL, MUST_REVERSE, CAN_REVERSE, NONE
+    }
+
+    /**
+     * Method to set chase behavior.
+     * @param s Chase behavior strategy
+     */
+    public void setChaseBehaviorStrategy(Strategy s) {
+        this.strategy = s;
+    }
+
+    /**
+     * Method to get chase behavior.
+     */
+    public Strategy getChaseBehaviorStrategy() {
+        return strategy;
     }
 
     /**

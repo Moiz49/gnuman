@@ -8,8 +8,8 @@ import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 
 /**
- *
- * @author Marc Herschel
+ * Factory for creating Ghost.
+ * @author Moiz Abdullah
  */
 
 public class GhostFactory {
