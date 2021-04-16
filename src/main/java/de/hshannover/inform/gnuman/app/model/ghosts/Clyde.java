@@ -2,12 +2,10 @@ package de.hshannover.inform.gnuman.app.model.ghosts;
 
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.model.AbstractGhost;
-import de.hshannover.inform.gnuman.app.model.Player;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
-import de.hshannover.inform.gnuman.app.model.storage.MapCell;
-import de.hshannover.inform.gnuman.app.util.Helper;
+import de.hshannover.inform.gnuman.app.model.strategy.ClydeStrategy;
 
 /**
  * Responds to Clydes behavior.<br>
@@ -21,14 +19,15 @@ public class Clyde extends AbstractGhost {
 
     public Clyde(DynamicVariables dyn, GhostMovementCoordinator coordinator, GameVariableTracker tracker) {
         super(EntityObjects.CLYDE, dyn, coordinator, tracker);
+        setChaseBehaviorStrategy(new ClydeStrategy()); // Set Chase Strategy
     }
 
-    @Override
-    protected MapCell decideChaseBehavior(Player player) {
-        if(Helper.euclideanDistance(clampCellX(), clampCellY(), player.clampCellX(), player.clampCellY()) < 9.0) {
-            return coordinator.getScatterPoint(getEntityType());
-        }
-        return new MapCell(player.clampCellX(), player.clampCellY());
-    }
+//    @Override
+//    protected MapCell decideChaseBehavior(Player player) {
+//        if(Helper.euclideanDistance(clampCellX(), clampCellY(), player.clampCellX(), player.clampCellY()) < 9.0) {
+//            return coordinator.getScatterPoint(getEntityType());
+//        }
+//        return new MapCell(player.clampCellX(), player.clampCellY());
+//    }
 
 }

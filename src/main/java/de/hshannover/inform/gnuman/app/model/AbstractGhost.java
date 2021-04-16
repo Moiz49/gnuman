@@ -56,10 +56,19 @@ public abstract class AbstractGhost extends AbstractEntity {
     }
 
     /**
-     * Method to get chase behavior.
+     * Set a chase target depending on the ghost behavior or switch to another state.
+     * @param player player to chase.
+     * @return a map cell with the current target
      */
-    public Strategy getChaseBehaviorStrategy() {
-        return strategy;
+    protected MapCell decideChaseBehavior(Player player) {
+        return strategy.chaseStrategy(player, this);
+    }
+
+    /**
+     * Method to get coordinator.
+     */
+    public GhostMovementCoordinator getCoordinator() {
+        return coordinator;
     }
 
     /**
@@ -568,16 +577,6 @@ public abstract class AbstractGhost extends AbstractEntity {
         currentDirection = d;
     }
 
-    /*
-     * Abstracts
-     */
-
-    /**
-     * Set a chase target depending on the ghost behavior or switch to another state.
-     * @param player player to chase.
-     * @return a map cell with the current target
-     */
-    protected abstract MapCell decideChaseBehavior(Player player);
 
     /*
      * Overrides
