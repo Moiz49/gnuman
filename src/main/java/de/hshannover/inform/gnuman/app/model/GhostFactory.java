@@ -1,4 +1,5 @@
 package de.hshannover.inform.gnuman.app.model;
+
 import de.hshannover.inform.gnuman.app.model.ghosts.Blinky;
 import de.hshannover.inform.gnuman.app.model.ghosts.Clyde;
 import de.hshannover.inform.gnuman.app.model.ghosts.Inky;

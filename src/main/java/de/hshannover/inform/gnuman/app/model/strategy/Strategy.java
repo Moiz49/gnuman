@@ -10,5 +10,6 @@ import de.hshannover.inform.gnuman.app.model.AbstractGhost;
  */
 
 public interface Strategy {
-    abstract MapCell chaseStrategy(Player player, AbstractGhost ghost);
+    public abstract MapCell chaseStrategy(Player player, AbstractGhost ghost);
 }
+

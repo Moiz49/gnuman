@@ -37,7 +37,7 @@ public abstract class AbstractGhost extends AbstractEntity {
     private MapCell[] moveAroundInsideSpawn;
     private boolean targetCellReached, pathCompleted, movementStateSwitchQueued, died;
     private int moveAroundInsideSpawnIndex;
-    private Strategy strategy;
+    protected Strategy strategy;
 
     /**
      * Special flags for ghost movement operations.
@@ -45,30 +45,6 @@ public abstract class AbstractGhost extends AbstractEntity {
      */
     public enum MovementFlags {
         CAN_PASS_GHOSTWALL, MUST_REVERSE, CAN_REVERSE, NONE
-    }
-
-    /**
-     * Method to set chase behavior.
-     * @param s Chase behavior strategy
-     */
-    public void setChaseBehaviorStrategy(Strategy s) {
-        this.strategy = s;
-    }
-
-    /**
-     * Set a chase target depending on the ghost behavior or switch to another state.
-     * @param player player to chase.
-     * @return a map cell with the current target
-     */
-    protected MapCell decideChaseBehavior(Player player) {
-        return strategy.chaseStrategy(player, this);
-    }
-
-    /**
-     * Method to get coordinator.
-     */
-    public GhostMovementCoordinator getCoordinator() {
-        return coordinator;
     }
 
     /**
@@ -109,6 +85,34 @@ public abstract class AbstractGhost extends AbstractEntity {
                });
            }
         });
+    }
+
+    /*
+     * Abstracts to implement.
+     */
+
+    /**
+     * Set a chase target depending on the ghost behavior or switch to another state.
+     * @param player player to chase.
+     * @return a map cell with the current target
+     */
+    public MapCell decideChaseBehavior(Player player) {
+        return strategy.chaseStrategy(player, this);
+    }
+
+    /**
+     * Method to get coordinator.
+     */
+    public GhostMovementCoordinator getCoordinator() {
+        return coordinator;
+    }
+
+    /**
+     * Method to set chase behavior.
+     * @param s Chase behavior strategy
+     */
+    public void setChaseBehaviorStrategy(Strategy s) {
+        this.strategy = s;
     }
 
     /**

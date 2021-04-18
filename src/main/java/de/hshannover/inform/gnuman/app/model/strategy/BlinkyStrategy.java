@@ -10,10 +10,10 @@ import de.hshannover.inform.gnuman.app.model.storage.MapCell;
  */
 
 public class BlinkyStrategy implements Strategy {
-
     @Override
     public MapCell chaseStrategy(Player player, AbstractGhost ghost) {
         return new MapCell(player.clampCellX(), player.clampCellY());
     }
-
 }
+
+

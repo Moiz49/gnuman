@@ -26,7 +26,6 @@ public class Entities {
     private TileMap map;
     private Player player;
     private List<AbstractGhost> ghosts;
-    private GhostFactory ghostFactory;
 
     /**
      * Construct a new entity manager.
@@ -37,7 +36,6 @@ public class Entities {
         this.dyn = dyn;
         this.map = map;
         this.ghosts = new LinkedList<>();
-        this.ghostFactory = new GhostFactory();
     }
 
     /**
@@ -58,14 +56,20 @@ public class Entities {
         player = new Player(dyn, map, mapData, tracker);
     //Ghosts
         GhostMovementCoordinator movementCoordinator = new GhostMovementCoordinator(dyn, map, mapData, player, tracker);
-//        ghosts.add(new Blinky(dyn, movementCoordinator, tracker));
-//        ghosts.add(new Clyde(dyn, movementCoordinator, tracker));
-//        ghosts.add(new Pinky(dyn, movementCoordinator, tracker));
-//        ghosts.add(new Inky(dyn, movementCoordinator, tracker));
+
+    // Before Factory Method
+        // ghosts.add(new Blinky(dyn, movementCoordinator, tracker));
+        // ghosts.add(new Clyde(dyn, movementCoordinator, tracker));
+        // ghosts.add(new Pinky(dyn, movementCoordinator, tracker));
+        // ghosts.add(new Inky(dyn, movementCoordinator, tracker));
+
+    // After Factory Method
+        GhostFactory ghostFactory = new GhostFactory();;
         ghosts.add(ghostFactory.createGhost("Blinky", dyn, movementCoordinator, tracker));
         ghosts.add(ghostFactory.createGhost("Clyde", dyn, movementCoordinator, tracker));
         ghosts.add(ghostFactory.createGhost("Pinky", dyn, movementCoordinator, tracker));
         ghosts.add(ghostFactory.createGhost("Inky", dyn, movementCoordinator, tracker));
+
    //OK
         Log.info(getClass().getSimpleName(), "Entites placed and loaded successfully.");
     }

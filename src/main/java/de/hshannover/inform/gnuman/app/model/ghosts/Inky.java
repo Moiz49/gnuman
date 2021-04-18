@@ -2,9 +2,11 @@ package de.hshannover.inform.gnuman.app.model.ghosts;
 
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.model.AbstractGhost;
+import de.hshannover.inform.gnuman.app.model.Player;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
+import de.hshannover.inform.gnuman.app.model.storage.MapCell;
 import de.hshannover.inform.gnuman.app.model.strategy.InkyStrategy;
 
 /**
@@ -19,12 +21,7 @@ public class Inky extends AbstractGhost {
 
     public Inky(DynamicVariables dyn, GhostMovementCoordinator coordinator, GameVariableTracker tracker) {
         super(EntityObjects.INKY, dyn, coordinator, tracker);
-        setChaseBehaviorStrategy(new InkyStrategy()); // Set Chase Strategy
+        this.strategy = new InkyStrategy(); // Set Chase Strategy
     }
-
-//    @Override
-//    protected MapCell decideChaseBehavior(Player player) {
-//        return getChaseBehaviorStrategy().strategy(player, coordinator);
-//    }
 
 }

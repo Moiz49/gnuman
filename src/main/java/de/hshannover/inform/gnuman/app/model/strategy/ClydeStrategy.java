@@ -12,13 +12,13 @@ import de.hshannover.inform.gnuman.app.util.Helper;
  */
 
 public class ClydeStrategy implements Strategy {
-
     @Override
     public MapCell chaseStrategy(Player player, AbstractGhost ghost) {
-        if(Helper.euclideanDistance(ghost.clampCellX(), ghost.clampCellY(), player.clampCellX(), player.clampCellY()) < 9.0) {
+        if(Helper.euclideanDistance(ghost.clampCellX(), ghost.clampCellY(),
+                player.clampCellX(), player.clampCellY()) < 9.0) {
             return ghost.getCoordinator().getScatterPoint(ghost.getEntityType());
         }
         return new MapCell(player.clampCellX(), player.clampCellY());
     }
-
 }
+

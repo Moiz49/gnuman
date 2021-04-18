@@ -5,10 +5,13 @@ import de.hshannover.inform.gnuman.app.enums.GhostBehaviorState;
 import de.hshannover.inform.gnuman.app.enums.GhostMovementStates;
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.model.AbstractGhost;
+import de.hshannover.inform.gnuman.app.model.Player;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
+import de.hshannover.inform.gnuman.app.model.storage.MapCell;
 import de.hshannover.inform.gnuman.app.model.strategy.BlinkyStrategy;
+import de.hshannover.inform.gnuman.app.model.strategy.Strategy;
 import de.hshannover.inform.gnuman.app.rules.ElroyRules;
 import de.hshannover.inform.gnuman.app.rules.EntitySpeedRules;
 import de.hshannover.inform.gnuman.app.rules.EntitySpeedRules.SpeedTypes;
@@ -45,13 +48,8 @@ public class Blinky extends AbstractGhost {
         });
 
         // Set Chase Strategy
-        setChaseBehaviorStrategy(new BlinkyStrategy());
+        this.strategy = new BlinkyStrategy();
     }
-
-//    @Override
-//    protected MapCell decideChaseBehavior(Player player) {
-//        return new MapCell(player.clampCellX(), player.clampCellY());
-//    }
 
     @Override
     protected void computeSpeed(SpeedTypes speedFactor) {
