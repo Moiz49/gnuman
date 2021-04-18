@@ -2,14 +2,11 @@ package de.hshannover.inform.gnuman.app.model.ghosts;
 
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.model.AbstractGhost;
-import de.hshannover.inform.gnuman.app.model.Player;
 import de.hshannover.inform.gnuman.app.model.coordination.GhostMovementCoordinator;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
 import de.hshannover.inform.gnuman.app.model.storage.GameVariableTracker;
-import de.hshannover.inform.gnuman.app.model.storage.MapCell;
 import de.hshannover.inform.gnuman.app.model.strategy.ClydeStrategy;
-import de.hshannover.inform.gnuman.app.model.strategy.Strategy;
-import de.hshannover.inform.gnuman.app.util.Helper;
+
 /**
  * Responds to Clydes behavior.<br>
  * Clyde will check if the player is 8+ blocks away from him.<br>
